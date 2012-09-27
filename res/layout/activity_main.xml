@@ -1,0 +1,39 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp" >
+
+    <CheckBox
+        android:id="@+id/checkBoxSpeak"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="22dp"
+        android:layout_marginTop="19dp"
+        android:checked="false"
+        android:text="@string/shouldSpeak" />
+
+    <CheckBox
+        android:id="@+id/checkBoxReply"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/checkBoxSpeak"
+        android:layout_below="@+id/checkBoxSpeak"
+        android:text="@string/shouldReply" />
+
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/checkBoxReply"
+        android:layout_alignRight="@+id/checkBoxSpeak"
+        android:layout_below="@+id/checkBoxReply"
+        android:layout_marginTop="31dp"
+        android:ems="10" 
+        android:hint="Custom Reply Message"/>
+
+</RelativeLayout>
