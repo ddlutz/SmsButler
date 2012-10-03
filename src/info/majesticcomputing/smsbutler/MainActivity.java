@@ -4,12 +4,16 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
-import android.text.Editable;
 import android.util.Log;
 import android.view.Menu;
 import android.widget.*;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 
+/**
+ * 
+ * @author ddlutz
+ *	This activity is a preferences screen which allows you to change settings on what the app will do. 
+ */
 public class MainActivity extends Activity {
 
 	CheckBox cbSpeak;
@@ -24,6 +28,7 @@ public class MainActivity extends Activity {
 	Editor prefsEdit;
 	boolean shouldSpeak;
 	boolean shouldReply;
+	String storedMessage;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -33,7 +38,7 @@ public class MainActivity extends Activity {
         
         shouldSpeak = prefs.getBoolean(SHOULD_SPEAK, false);
         shouldReply = prefs.getBoolean(SHOULD_REPLY, false);
-        
+        storedMessage = prefs.getString(MESSAGE, "");
         initalizeLayout();
  
     }
@@ -53,6 +58,7 @@ public class MainActivity extends Activity {
     	
     	cbSpeak.setChecked(shouldSpeak);
     	cbReply.setChecked(shouldReply);
+    	message.setText(storedMessage);
     	
     	cbSpeak.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 

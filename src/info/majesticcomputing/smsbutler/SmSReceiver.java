@@ -10,7 +10,11 @@ import android.util.Log;
 import android.widget.Toast;
 
 
-
+/**
+ * 
+ * @author ddlutz
+ *	This receiver starts every-time a text message is received.
+ */
 public class SmSReceiver extends BroadcastReceiver {
 
 	SharedPreferences prefs;
@@ -41,15 +45,18 @@ public class SmSReceiver extends BroadcastReceiver {
 				if(address != null && !address.equals("null")){
 				Toast.makeText(context, message, Toast.LENGTH_LONG).show();
 				
-				context.startService(new android.content.Intent(context, textService.class).putExtra("address", address).putExtra("message", message));
+				context.startService(new android.content.Intent(context, TextService.class).putExtra("address", address).putExtra("message", message));
 					}
 				}
 				
 				if(prefs.contains(MainActivity.SHOULD_REPLY) && prefs.getBoolean(MainActivity.SHOULD_REPLY, false) == true)
 				{
 					//Send sms reply here
+					Log.i("smsbutler", "sending message");
+					String reply = prefs.getString(MainActivity.MESSAGE, "I am busy and will read your message later");
+					Log.i("smsbutler", reply);
 					SmsManager sms = SmsManager.getDefault();
-					sms.sendTextMessage(address, null, "testing", null, null);
+					sms.sendTextMessage(address, null, reply, null, null);
 				}
 			}
 			
